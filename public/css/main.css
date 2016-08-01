@@ -1,0 +1,28 @@
+/* Adjust for fixed navbar*/
+body {
+  padding-top: 90px;
+}
+
+.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 100%;
+}
+
+
+audio {
+  margin-bottom: 20px;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.glyphicon {
+  margin-right: 5px;
+}
+
+.count {
+	color: #0c84e4;
+}
