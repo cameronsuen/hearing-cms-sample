@@ -28,7 +28,7 @@ class AuthenticateController extends Controller
 			$token = (new Builder())->setIssuer('hearing_cms@gce')
 								    ->setAudience('hearing_cms@gce')
 									->setIssuedAt(time())
-									->setNotBefore(time() + 60)
+									->setNotBefore(time())
 									->setExpiration(time() + 3600)
 									->set('username', $credentials['username'])
 									->set('role', Auth::user()->role)

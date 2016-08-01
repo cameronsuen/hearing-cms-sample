@@ -8,9 +8,9 @@ use Lcobucci\JWT\ValidationData;
 use Lcobucci\JWT\Signer\Hmac\Sha256;
 
 use Illuminate\Http\Response;
-use Exception;
+//use Exception;
 
-class CheckToken
+class ApiAuth
 {
     /**
      * Handle an incoming request.
@@ -22,7 +22,14 @@ class CheckToken
 
     public function handle($request, Closure $next)
     {
-		try {
+
+		if (checkToken($request->header('Authorization'))) {
+			return $next($request);
+		} else {
+			return response()->json(['success' => false, 'error' => 'Invalid Token']);
+		}
+
+		/*try {
 			$auth_header = explode(' ', $request->header('Authorization'));
 			
 			if ($auth_header[0] != 'Bearer') {
@@ -47,6 +54,6 @@ class CheckToken
 			return $next($request);
 		} catch(Exception $e) {
 			return response()->json(['success' => false, 'error' => $auth_header]);
-		}
+		}*/
     }
 }

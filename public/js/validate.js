@@ -93,16 +93,19 @@ var SampleCard = React.createClass({
 	getInitialState: function() {
 		return {
 			result: '',
-			i: -1
+			i: -1,
+			loaded: false
 		};
 	}, 
 
 	getSample: function() {
-		console.log(Request);
-		this.request = Request.get('/api/samples', null, function(result) {
+		this.request = Request.get('/api/samples', null, (result) => {
+			console.log('got');
+			console.log(result);
 			this.setState({
 				result: result,
-				i: 0
+				i: 0,
+				loaded: true
 			});
 		}.bind(this));
 	},
@@ -127,7 +130,7 @@ var SampleCard = React.createClass({
 
 	render: function() {
 		// Check if component is completely rendered
-		if (this.state.i >= 0) {
+		if (this.state.loaded) {
 			return (
 				<div className="sampleCard">
 				  <div className="panel panel-primary">

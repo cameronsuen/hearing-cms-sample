@@ -17,11 +17,15 @@ Route::get('/', function () {
 
 Route::post('authenticate', 'Auth\AuthenticateController@authenticate');
 
-Route::group(['prefix' => 'api', 'middleware' => 'token.check'], function() {
-//Route::group(['prefix' => 'api'], function() {
+Route::group(['prefix' => 'api', 'middleware' => 'api.auth'], function() {
 	Route::resource('users', 'API\UserController', ['only' => 'index']);
 	Route::resource('samples', 'API\SampleController', ['only' => ['index', 'update']]);
 });
 
-Route::get('validate', 'ValidateController@index');
-Route::get('login', 'LoginController@index');
+Route::group(['middleware' => 'frontend.auth'], function() {
+	Route::get('validate', 'ValidateController@index');
+});
+
+Route::group(['middleware' => 'login.redirect'], function() {
+	Route::get('login', 'LoginController@index');
+});
