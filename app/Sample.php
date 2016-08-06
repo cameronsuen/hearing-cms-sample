@@ -10,4 +10,5 @@ class Sample extends Model
 	protected $table = 'sample';
 	public $primaryKeys = 'id';
 	public $timestamps = false;
+
 }

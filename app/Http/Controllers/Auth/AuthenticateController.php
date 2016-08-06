@@ -35,7 +35,7 @@ class AuthenticateController extends Controller
 									->sign($signer, env('HMAC_SIGNER', ''))
 									->getToken();
 
-			return response()->json(['success' => true, 'access_token' => (String) $token]);
+			return response()->json(['success' => true, 'data' => ['access_token' => (String) $token]]);
 
 		} catch(Exception $e) {
 			return response()->json(['success' => false, 'error' => 'Invalid credentials']);

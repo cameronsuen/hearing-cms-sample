@@ -22,38 +22,14 @@ class ApiAuth
 
     public function handle($request, Closure $next)
     {
+		$role = checkToken($request->header('Authorization'));
 
-		if (checkToken($request->header('Authorization'))) {
+		if ($role > 0) {
+			$request->merge(['role' => $role]);
 			return $next($request);
 		} else {
-			return response()->json(['success' => false, 'error' => 'Invalid Token']);
+			return response()->json(['success' => false, 'error' => $request->header('Authorization')]);
 		}
 
-		/*try {
-			$auth_header = explode(' ', $request->header('Authorization'));
-			
-			if ($auth_header[0] != 'Bearer') {
-				throw new Exception();
-			}
-
-			$signer = new Sha256();
-			$token = (new Parser())->parse($auth_header[1]);
-
-			if (! $token->verify($signer, env('HMAC_SIGNER', ''))) {
-				throw new Exception();
-			}
-
-			$data = new ValidationData();
-			$data->setIssuer('hearing_cms@gce');
-			$data->setAudience('hearing_cms@gce');
-        
-			if (!$token->validate($data)) {
-				throw new Exception();
-			}
-
-			return $next($request);
-		} catch(Exception $e) {
-			return response()->json(['success' => false, 'error' => $auth_header]);
-		}*/
     }
 }

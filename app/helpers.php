@@ -38,8 +38,8 @@ function checkToken($auth_str)
 			throw new Exception();
 		}
 
-		return true;
+		return $token->getClaim('role');
 	} catch(Exception $e) {
-		return false;
+		return -1;
 	}
 }

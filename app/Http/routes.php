@@ -22,10 +22,10 @@ Route::group(['prefix' => 'api', 'middleware' => 'api.auth'], function() {
 	Route::resource('samples', 'API\SampleController', ['only' => ['index', 'update']]);
 });
 
-Route::group(['middleware' => 'frontend.auth'], function() {
-	Route::get('validate', 'ValidateController@index');
+Route::group(['middleware' => 'api.auth'], function() {
+	Route::get('sysFunction', 'SysFunctionController@index');
 });
 
-Route::group(['middleware' => 'login.redirect'], function() {
-	Route::get('login', 'LoginController@index');
-});
+Route::get('{path}', 'ValidateController@index');
+
+Route::get('file/{type}/{filename}', 'FileController@getFile')->where('filename', '^[^/]+$');

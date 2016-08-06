@@ -51,8 +51,8 @@ class Kernel extends HttpKernel
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
 		//'jwt.auth' => \Tymon\JWTAuth\Middleware\GetUserFromToken::class,
 		//'jwt.refresh' => \Tymon\JWTAuth\Middleware\RefreshToken::class,
-		'api.auth' => \App\Http\Middleware\ApiAuth::class,
-		'frontend.auth' => \App\Http\Middleware\FrontendAuth::class,
-		'login.redirect' => \App\Http\Middleware\LoginRedirect::class
+		    'api.auth' => \App\Http\Middleware\ApiAuth::class,
+		    'frontend.auth' => \App\Http\Middleware\FrontendAuth::class,
+		    'login.redirect' => \App\Http\Middleware\LoginRedirect::class
     ];
 }

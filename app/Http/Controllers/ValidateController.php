@@ -8,7 +8,6 @@ use App\Http\Requests;
 
 class ValidateController extends Controller
 {
-    //
 	public function index()
 	{
 		return view('sample');

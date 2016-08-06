@@ -23,7 +23,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
 
 	<!-- Wrapper for AJAX requests with Access Token -->
-	<script src="{{ URL::asset('js/Request.js') }}"></script>
+	<script src="{{ URL::asset('js/utils.js') }}"></script>
 
 	<!-- Bootswatch Paper Theme -->
     <link href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.6/paper/bootstrap.min.css" rel="stylesheet" integrity="sha384-2mX2PSpkRSXLQzmNzH3gwK6srb06+OfbDlYjbog8LQuALYJjuQ3+Yzy2JIWNV9rW" crossorigin="anonymous">
@@ -31,15 +31,12 @@
 	<!-- Font Awesome -->
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
 
-	<link href="{{ URL::asset('css/main.css') }}" rel="stylesheet">
+	<link href="{{ URL::asset('css/all.css') }}" rel="stylesheet">
   </head>
+
   <body>
     
-    @yield('layouts.navbar');
-    
-    <div class="container-fluid">
-		@yield('content')
-	</div>
+	@yield('content')
 
   </body>
 
