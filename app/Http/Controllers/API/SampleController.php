@@ -83,10 +83,11 @@ class SampleController extends Controller
 		
 		if ($export) {
 			$zipper = new Zipper;
-			$zipper->make('bundle.zip');
+			$zipper->make('public/bundle.zip');
 			foreach($samples as $entry) 
 			{
-				$zipper->
+				$zipper->addFile('storage/audio/'.$entry);
+				$samples = 'bundle.zip';
 			}
 		}
 
@@ -121,5 +122,22 @@ class SampleController extends Controller
 
 	public function upload(Request $request)
 	{
+		$files = $request->allFiles();
+		foreach($files as $sample)
+		{
+			// Check if sample is valid 
+			if (!$sample->isValid()) {
+				throw new Exception('Invalid file');
+			}
+
+			$name = $sample->getClientOriginalName();
+			$fileAttr = explode('_', $name);
+
+			if (count($fileAttr) != 8) {
+				throw new Exception('Invalid filename');
+			}
+
+			if ($fileAttr	
+		}
 	}
 }
